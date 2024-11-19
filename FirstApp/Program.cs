@@ -6,18 +6,32 @@ namespace FirstApp
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Как тебя зовут?");
-            string name = Console.ReadLine();
-            
-            Console.WriteLine("Сколько тебе лет?");
-            int.TryParse(Console.ReadLine(), out int age);
+            Console.WriteLine("Напишите свой любимый цвет на английском с маленькой буквы");
 
-            Console.WriteLine("Какая у тебя дата рождения?");
-            string birthdate = Console.ReadLine();
+            var color = Console.ReadLine();
 
-            Console.WriteLine();
-            Console.WriteLine("Имя: {0}\nЛет: {1}\nДата рождения: {2}", name, age, birthdate);
+            if (color == "red")
+            {
+                Console.BackgroundColor = ConsoleColor.Red;
+                Console.ForegroundColor = ConsoleColor.Black;
 
+                Console.WriteLine("Your color is red!");
+            }
+
+            else if (color == "green")
+            {
+                Console.BackgroundColor = ConsoleColor.Green;
+                Console.ForegroundColor = ConsoleColor.Black;
+
+                Console.WriteLine("Your color is green!");
+            }
+            else
+            {
+                Console.BackgroundColor = ConsoleColor.Cyan;
+                Console.ForegroundColor = ConsoleColor.Black;
+
+                Console.WriteLine("Your color is cyan!");
+            }
             Console.ReadKey();
         }
     }
