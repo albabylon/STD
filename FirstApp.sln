@@ -5,6 +5,8 @@ VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FirstApp", "FirstApp\FirstApp.csproj", "{770243DF-CC26-443F-92D3-0205326AA2D6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Anketa", "Anketa\Anketa.csproj", "{12ECADA7-9401-40D7-B0DD-5297F90D16FE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{770243DF-CC26-443F-92D3-0205326AA2D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{770243DF-CC26-443F-92D3-0205326AA2D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{770243DF-CC26-443F-92D3-0205326AA2D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12ECADA7-9401-40D7-B0DD-5297F90D16FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12ECADA7-9401-40D7-B0DD-5297F90D16FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12ECADA7-9401-40D7-B0DD-5297F90D16FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12ECADA7-9401-40D7-B0DD-5297F90D16FE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
