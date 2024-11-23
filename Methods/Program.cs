@@ -32,6 +32,10 @@ namespace Methods
 
             Echo("Ты тут, братишка?", 4);
 
+            Console.WriteLine(Factorial(20));
+
+            Console.WriteLine(PowerUp(2, 4));
+
             Console.ReadLine();
         }
 
@@ -138,12 +142,43 @@ namespace Methods
             {
                 modif = modif.Remove(0, 2);
             }
-
+            
+            Console.BackgroundColor = (ConsoleColor)deep;
             Console.WriteLine("..." + modif);
 
             if (deep > 1)
             {
                 Echo(modif, deep - 1);
+            }
+        }
+        static decimal Factorial(int x)
+        {
+            if (x == 0)
+            {
+                return 1;
+            }
+            else
+            {
+                return x * Factorial(x - 1);
+            }
+        }
+
+        private static int PowerUp(int N, byte pow)
+        {
+            if (pow == 0) 
+            { 
+                return 1; 
+            }
+            else
+            {
+                if (N == 1)
+                {
+                    return N;
+                }
+                else
+                {
+                    return N * PowerUp(N, --pow);
+                }
             }
         }
     }
