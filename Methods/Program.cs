@@ -7,14 +7,43 @@ namespace Methods
     {
         static void Main(string[] args)
         {
-            int[] arrayInt = GetArrayFromConsole(10);
+            //int index = 6;
 
-            ShowArray(arrayInt, true);
+            //int[] arrayInt = GetArrayFromConsole(ref index);
+
+            //ShowArray(arrayInt, true);
+
+            //Person person1 = new Person();
+            //Person person2 = new Person();
+
+            //Person newPerson1 = ChangePerson(person1, 1, "Sasha1");
+            //Person newPerson2 = ChangePerson(person2, 2, "Sasha2");
+
+            //Console.WriteLine(newPerson1.Name);
+            //Console.WriteLine(newPerson1.Id);
+
+            //Console.WriteLine(newPerson2.Name);
+            //Console.WriteLine(newPerson2.Id);
+
+            //var arr = new int[] { 1, 2, 3 };
+            //BigDataOperation(arr);
+
+            //Console.WriteLine(arr[0]);
+
+            Echo("Ты тут, братишка?", 4);
 
             Console.ReadLine();
         }
 
-        static int[] GetArrayFromConsole(int num = 5)
+        static Person ChangePerson(Person person, int i, string name)
+        {
+            person.Id = i;
+            person.Name = name;
+
+            return person;
+        }
+
+        static int[] GetArrayFromConsole(ref int num)
         {
             var result = new int[num];
 
@@ -27,7 +56,32 @@ namespace Methods
             return result;
         }
 
-        static int[] SortArray(int[] arrayInt)
+        static void SortArray(in int[] array, out int[] sorteddesc, out int[] sortedasc)
+        {
+            sorteddesc = SortArrayDesc(array);
+            sortedasc = SortArrayAsc(array);
+        }
+
+        static int[] SortArrayDesc(int[] arrayInt)
+        {
+            int temp = 0;
+            for (int i = 0; i < arrayInt.Length; i++)
+            {
+                for (int j = i + 1; j < arrayInt.Length; j++)
+                {
+                    if (arrayInt[i] < arrayInt[j])
+                    {
+                        temp = arrayInt[i];
+                        arrayInt[i] = arrayInt[j];
+                        arrayInt[j] = temp;
+                    }
+                }
+            }
+
+            return arrayInt;
+        }
+
+        static int[] SortArrayAsc(int[] arrayInt)
         {
             int temp = 0;
             for (int i = 0; i < arrayInt.Length; i++)
@@ -50,7 +104,11 @@ namespace Methods
         {
             int[] result = array;
             if (isSorted)
-                result = SortArray(array);
+            {
+                SortArray(array, out int[] sorteddesc, out int[] sortedasc);
+
+                result = sorteddesc;
+            }
 
             foreach (int i in result)
             {
@@ -66,5 +124,33 @@ namespace Methods
                 Console.WriteLine(color);
             }
         }
+
+        static void BigDataOperation(in int[] arr)
+        {
+            arr[0] = 4;
+        }
+
+        static void Echo(string saidworld, int deep)
+        {
+            var modif = saidworld;
+
+            if (modif.Length > 2)
+            {
+                modif = modif.Remove(0, 2);
+            }
+
+            Console.WriteLine("..." + modif);
+
+            if (deep > 1)
+            {
+                Echo(modif, deep - 1);
+            }
+        }
+    }
+
+    class Person
+    {
+        public string Name { get; set; } = "Start";
+        public int Id { get; set; } = 0;
     }
 }
