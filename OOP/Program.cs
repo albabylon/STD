@@ -11,19 +11,63 @@ namespace OOP
 
         static void Main(string[] args)
         {
-            ObjClass obj1 = new ObjClass() { Str = "Value1", Intgr = 1, Rectangle = new Rectangle() { a = 1, b = 1 } };
-            ObjClass obj2 = obj1;
+            //отличе класс от структуры
+            //ObjClass obj1 = new ObjClass() { Str = "Value1", Intgr = 1, Rectangle = new Rectangle() { a = 1, b = 1 } };
+            //ObjClass obj2 = obj1;
 
-            obj1.Str = "Value2";
-            obj1.Intgr = 2;
-            obj1.Rectangle = new Rectangle() { a = 2, b = 2 };
+            //obj1.Str = "Value2";
+            //obj1.Intgr = 2;
+            //obj1.Rectangle = new Rectangle() { a = 2, b = 2 };
 
-            ObjStruct objStr1 = new ObjStruct() { Str = "Value1", Intgr = 1, Rectangle = new Rectangle() { a = 1, b = 1 } };
-            ObjStruct objStr2 = objStr1;
+            //ObjStruct objStr1 = new ObjStruct() { Str = "Value1", Intgr = 1, Rectangle = new Rectangle() { a = 1, b = 1 } };
+            //ObjStruct objStr2 = objStr1;
 
-            objStr1.Str = "Value2";
-            objStr1.Intgr = 2;
-            objStr1.Rectangle = new Rectangle() { a = 2, b = 2 };
+            //objStr1.Str = "Value2";
+            //objStr1.Intgr = 2;
+            //objStr1.Rectangle = new Rectangle() { a = 2, b = 2 };
+
+            //проверка на нулл
+            var department = GetCurrentDepartment();
+
+            if (department.Company.Type == "Банк" && department.City.Name == "Санкт-Петербург")
+            {
+                string copmName = department?.Company?.Name ?? "Неизвестная компания";
+
+                Console.WriteLine($"У банка {copmName} есть отделение в Санкт-Петербурге");
+            }
+        }
+
+        class Bus
+        {
+            public int? Load;
+
+            public void PrintStatus()
+            {
+                if (Load.HasValue && Load > 0)
+                    Console.WriteLine("Количество пассажиров в автобусе: {0}", Load);
+                else
+                    Console.WriteLine("Автобус пустой!");
+            }
+        }
+
+        static Department GetCurrentDepartment()
+        {
+            // logic
+            return new Department();
+        }
+        class Company
+        {
+            public string Type;
+            public string Name;
+        }
+        class Department
+        {
+            public Company Company;
+            public City City;
+        }
+        class City
+        {
+            public string Name;
         }
 
         class ObjClass
