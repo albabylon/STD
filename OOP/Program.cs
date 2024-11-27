@@ -27,14 +27,75 @@ namespace OOP
             //objStr1.Rectangle = new Rectangle() { a = 2, b = 2 };
 
             //проверка на нулл
-            var department = GetCurrentDepartment();
+            //var department = GetCurrentDepartment();
 
-            if (department.Company.Type == "Банк" && department.City.Name == "Санкт-Петербург")
+            //if (department.Company.Type == "Банк" && department.City.Name == "Санкт-Петербург")
+            //{
+            //    string copmName = department?.Company?.Name ?? "Неизвестная компания";
+
+            //    Console.WriteLine($"У банка {copmName} есть отделение в Санкт-Петербурге");
+            //}
+
+            Console.ReadKey();
+        }
+
+        class BaseClass
+        {
+            protected string Name;
+
+            public BaseClass(string name)
             {
-                string copmName = department?.Company?.Name ?? "Неизвестная компания";
-
-                Console.WriteLine($"У банка {copmName} есть отделение в Санкт-Петербурге");
+                Name = name;
             }
+        }
+
+        class DerivedClass : BaseClass
+        {
+            public string Description;
+
+            public int Counter;
+
+            public DerivedClass(string Name, string Description) : base(Name)
+            {
+                this.Description = Description;
+            }
+
+            public DerivedClass(string Name, string Description, int counter) : this(Name, Description)
+            {
+                Counter = counter;
+            }
+        }
+
+        class Obj
+        {
+            private string name;
+            private string owner;
+            private int length;
+            private int count;
+
+            public Obj(string name, string ownerName, int objLength, int count)
+            {
+                this.name = name;
+                owner = ownerName;
+                length = objLength;
+                this.count = count;
+            }
+        }
+        class Employee
+        {
+            public string Name;
+            public int Age;
+            public int Salary;
+        }
+
+        class ProjectManager : Employee
+        {
+            public string ProjectName;
+        }
+
+        class Developer : Employee
+        {
+            public string ProgrammingLanguage;
         }
 
         class Bus
@@ -111,5 +172,7 @@ namespace OOP
                 return a * b;
             }
         }
+
+
     }
 }
