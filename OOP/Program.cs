@@ -1,11 +1,32 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace OOP
 {
+    public static class IntrospectionExtensions
+    {
+        public static int GetNegative(this int a)
+        {
+            if (a >= 0)
+                return -a;
+            else
+                return a;
+        }
+
+        public static int GetPositive(this int a)
+        {
+            if (a >= 0)
+                return a;
+            else
+                return -a;
+        }
+    }
+
     internal class Program
     {
 
@@ -36,8 +57,184 @@ namespace OOP
             //    Console.WriteLine($"У банка {copmName} есть отделение в Санкт-Петербурге");
             //}
 
+            //BaseClass baseClass = new BaseClass("name");
+            ////baseClass.Display();
+            //DerivedClass derivedClass = new DerivedClass("name", "description");
+            //derivedClass.Display();
+
+            //D d = new D();
+            //E e = new E();
+
+            //d.Display();
+            //((A)e).Display();
+            //((B)d).Display();
+            //((A)d).Display();
+
+            //int[] arrayNumbers = new int[] { 23, 32, 54, 44, 00 };
+
+            //IndexingClass indexingClass = new IndexingClass(arrayNumbers);
+
+            //Console.WriteLine(indexingClass[3]);
+
+            //int num1 = 3_000_333;
+            //int num2 = 58;
+
+            //Helper.Swap(ref num1, ref num2);
+
+            //string s = "dsada";
+
+
+            //Console.WriteLine(num1); //58
+            //Console.WriteLine(num2); //3
+
+            int num1 = 7;
+            int num2 = -13;
+            int num3 = 0;
+
+            Console.WriteLine(num1.GetNegative()); //-7
+            Console.WriteLine(num1.GetPositive()); //7
+            Console.WriteLine(num2.GetNegative()); //-13
+            Console.WriteLine(num2.GetPositive()); //13
+            Console.WriteLine(num3.GetNegative()); //0
+            Console.WriteLine(num3.GetPositive()); //0
+
             Console.ReadKey();
         }
+
+
+        public class Helper 
+        {
+            public static void Swap (ref int a, ref int b)
+            {
+                int c = a;
+                a = b;
+                b = c;
+            }
+        }
+
+
+        public class Objec
+        {
+            public string Name;
+            public string Description;
+            public static int MaxValue = 2000;
+        }
+
+        public abstract class ComputerPart
+        {
+            public abstract void Work();
+        }
+        class Processor : ComputerPart
+        {
+            public override void Work()
+            {
+                throw new NotImplementedException();
+            }
+        }
+        class MotherBoard : ComputerPart
+        {
+            public override void Work()
+            {
+                throw new NotImplementedException();
+            }
+        }
+        class GraphicCard : ComputerPart
+        {
+            public override void Work()
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+
+
+        class IndexingClass
+        {
+            private int[] array;
+
+            public IndexingClass(int[] array)
+            {
+                this.array = array;
+            }
+
+            public int this[int i]
+            {
+                get
+                {
+                    if (i >= 0 && i < array.Length)
+                        return array[i];
+                    else
+                        return 0;
+                }
+                set
+                {
+                    if (i >= 0 && i < array.Length)
+                    {
+                        this[i] = value;
+                    }
+                }
+            }
+        }
+
+
+        class Obje
+        {
+            public int Value;
+
+            public static Obje operator + (Obje a, Obje b)
+            {
+                Obje obje = new Obje();
+                obje.Value = a.Value + b.Value;
+
+                return obje;
+            }
+            public static Obje operator - (Obje a, Obje b)
+            {
+                Obje obje = new Obje();
+                obje.Value = a.Value - b.Value;
+
+                return obje;
+            }
+        }
+
+
+        class A
+        {
+            public virtual void Display()
+            {
+                Console.WriteLine("Метод класса A");
+            }
+        }
+        class B : A
+        {
+            public new void Display()
+            {
+                Console.WriteLine("Метод класса B");
+            }
+        }
+        class C : A
+        {
+            public override void Display()
+            {
+                Console.WriteLine("Метод класса C");
+            }
+        }
+        class D : B
+        {
+            public new void Display()
+            {
+                Console.WriteLine("Метод класса D");
+            }
+        }
+        class E : C
+        {
+            public new void Display()
+            {
+                Console.WriteLine("Метод класса E");
+            }
+        }
+
+
 
         class BaseClass
         {
@@ -47,13 +244,38 @@ namespace OOP
             {
                 Name = name;
             }
+
+            public virtual int Counter
+            {
+                get;
+                set;
+            }
+
+            public virtual void Display() 
+            {
+                Console.WriteLine("Метод класса BaseClass");
+            }
         }
 
         class DerivedClass : BaseClass
         {
             public string Description;
 
-            public int Counter;
+            private int counter;
+            public override int Counter 
+            {
+                get
+                {
+                    return counter;
+                }
+                set
+                {
+                    if (value < 0)
+                        value = 0;
+                    else
+                        counter = value;
+                }
+            }
 
             public DerivedClass(string Name, string Description) : base(Name)
             {
@@ -64,7 +286,15 @@ namespace OOP
             {
                 Counter = counter;
             }
+
+            public override void Display()
+            {
+                base.Display();
+                Console.WriteLine("Метод класса DerivedClass");
+            }
         }
+
+
 
         class Obj
         {
