@@ -10,31 +10,17 @@ namespace OOPFinalTask
     {
         static void Main(string[] args)
         {
+            //Отправитель
+            //Набор продуктов
+            //Выбор типа доставки
+            //Заказ сформирован
 
+            //По типу доставки выбирается Курьер
+            //По типу Получатель
         }
     }
 
-    abstract class DeliveryBase
-    {
-        public string Address;
-    }
-
-    class HomeDelivery : DeliveryBase
-    {
-
-    }
-
-    class PickPointDelivery : DeliveryBase
-    {
-
-    }
-
-    class ShopDelivery : DeliveryBase
-    {
-
-    }
-
-    class Order<TDelivery, TStruct> where TDelivery : DeliveryBase
+    public class Order<TDelivery, TStruct> where TDelivery : DeliveryBase
     {
         public TDelivery Delivery;
 
@@ -49,9 +35,10 @@ namespace OOPFinalTask
     }
 
 
-    class AddressBase
-    {
 
-    }
+
+
+
+
     //сделать индексирование по выбору пункты выдачи
 }
