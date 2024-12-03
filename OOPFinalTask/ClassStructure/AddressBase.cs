@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 
 namespace OOPFinalTask
 {
@@ -38,7 +34,7 @@ namespace OOPFinalTask
         public int FloorNumber;
         public int FlatNumber;
 
-        protected AddressHome(string city, string street, string postalCode, int houseNumber, int floorNumber, int flatNumber) : base(city, street, houseNumber)
+        public AddressHome(string city, string street, string postalCode, int houseNumber, int floorNumber, int flatNumber) : base(city, street, houseNumber)
         {
             FloorNumber = floorNumber;
             FlatNumber = flatNumber;

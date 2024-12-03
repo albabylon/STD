@@ -1,16 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace OOPFinalTask
+﻿namespace OOPFinalTask
 {
+    //Индексаторы
+    //Статический переопрделенный метод
     public class Product
     {
         public string Name { get; set; }
         public int ID { get; set; }
-        public decimal ProductPrice {  get; set; }
+
+        private decimal productPrice;
+        public decimal ProductPrice
+        {
+            get => productPrice;
+            set
+            {
+                if (value < 0)
+                    productPrice = 0;
+                productPrice = value;
+            }
+        }
 
         private int productQuantity;
         public int ProductQuantity
@@ -19,14 +26,27 @@ namespace OOPFinalTask
             set
             {
                 if (value < 0 || value > 1000)
-                    throw new ArgumentOutOfRangeException("Количество товара не в рамках разумного");
+                    productQuantity = 0;
                 else
                     productQuantity = value;
             }
         }
+
+        public Product(string name, int id, decimal price, int quantity)
+        {
+            Name = name;
+            ID = id;
+            productPrice = price;
+            productQuantity = quantity;
+        }
+
+        public static int operator +(Product a, Product b)
+        {
+            return a.ProductQuantity + b.ProductQuantity;
+        }
     }
 
-    public class  ProductCollection
+    public class ProductCollection
     {
         private Product[] products;
 

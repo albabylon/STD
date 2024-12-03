@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace OOPFinalTask
+﻿namespace OOPFinalTask
 {
+    //Переопределение свойств
     public abstract class ProcessParticipantBase
     {
         public string Name { get; set; }
@@ -15,27 +10,27 @@ namespace OOPFinalTask
         {
             get
             {
-                return phoneNumber;
+                if (!phoneNumber.Contains("+"))
+                    return phoneNumber.Insert(0, "+");
+                else
+                    return phoneNumber;
             }
             set
             {
-                if (!phoneNumber.Contains("+"))
-                    phoneNumber = value;
-                else
-                    phoneNumber = value.Replace("+", "");
+                phoneNumber = value;
             }
         }
 
         protected ProcessParticipantBase(string name, string phoneNumber)
         {
             Name = name;
-            PhoneNumber = phoneNumber;
+            this.phoneNumber = phoneNumber;
         }
     }
 
     public class Courier : ProcessParticipantBase
     {
-        public bool IsDeliveried {  get; set; }
+        public bool IsDeliveried { get; set; }
         public Courier(string name, string phoneNumber) : base(name, phoneNumber)
         {
 
