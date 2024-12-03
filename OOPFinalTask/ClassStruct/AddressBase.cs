@@ -18,6 +18,19 @@ namespace OOPFinalTask
             Street = street;
             HouseNumber = houseNumber;
         }
+
+        public virtual string GetFullAddress()
+        {
+            StringBuilder address = new StringBuilder();
+
+            address.Append(City);
+            address.Append(", ");
+            address.Append(Street);
+            address.Append(", ");
+            address.Append(HouseNumber);
+
+            return address.ToString();
+        }
     }
 
     public class AddressHome : AddressBase
@@ -29,6 +42,22 @@ namespace OOPFinalTask
         {
             FloorNumber = floorNumber;
             FlatNumber = flatNumber;
+        }
+
+        public override string GetFullAddress()
+        {
+            StringBuilder address = new StringBuilder();
+
+            string baseAddress = base.GetFullAddress();
+            address.Append(baseAddress);
+            address.Append(", ");
+            address.Append("эт.");
+            address.Append(FloorNumber);
+            address.Append(", ");
+            address.Append("кв.");
+            address.Append(FlatNumber);
+
+            return address.ToString();
         }
     }
 
