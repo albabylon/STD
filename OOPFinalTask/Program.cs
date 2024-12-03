@@ -43,6 +43,7 @@ namespace OOPFinalTask
 
             HomeDelivery homeDelivery = new HomeDelivery(addres1, sender1, recipient1, productCollection1, 200, "Иван", "+79230002323");
             homeDelivery.Send();
+            Console.WriteLine($"{products1.TotalProductQuantity()}");
             
             PickPointDelivery pickPointDelivery = new PickPointDelivery(addres2, sender2, recipient2, productCollection2, 430);
             pickPointDelivery.Send();
@@ -57,11 +58,6 @@ namespace OOPFinalTask
 
 
             Console.ReadKey();
-        }
-
-        public void TotalProduct(Product[] products1) 
-        {
-            
         }
     }
 
