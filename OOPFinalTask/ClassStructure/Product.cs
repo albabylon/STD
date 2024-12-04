@@ -2,6 +2,7 @@
 {
     //Индексаторы
     //Статический переопрделенный метод
+    //Перегрузка оператора +
     public class Product
     {
         public string Name { get; set; }
@@ -40,9 +41,9 @@
             productQuantity = quantity;
         }
 
-        public static int operator +(Product a, Product b)
+        public static decimal operator +(Product a, Product b)
         {
-            return a.ProductQuantity + b.ProductQuantity;
+            return a.ProductPrice + b.ProductPrice;
         }
     }
 

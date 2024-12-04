@@ -40,7 +40,6 @@ namespace OOPFinalTask
             };
             ProductCollection productCollection3 = new ProductCollection(products3);
 
-
             HomeDelivery homeDelivery = new HomeDelivery(addres1, sender1, recipient1, productCollection1, 200, "Иван", "+79230002323");
             homeDelivery.Send();
             Console.WriteLine($"{products1.TotalProductQuantity()}");
