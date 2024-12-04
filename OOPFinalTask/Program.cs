@@ -6,6 +6,7 @@ namespace OOPFinalTask
     {
         static void Main(string[] args)
         {
+            #region InputData
             //Входные данные отправки на дом
             Sender sender1 = new Sender("Саша", "+79110922323");
             Recipient recipient1 = new Recipient("Глеб", "+79110452453");
@@ -16,7 +17,6 @@ namespace OOPFinalTask
                 new Product("Куринное филе", 000002, 440, 1),
                 new Product("Чипсы Lay's", 000003, 200, 3),
             };
-            ProductCollection productCollection1 = new ProductCollection(products1);
 
             //Входные данные отправки в пункт выдачи
             Sender sender2 = new Sender("Маша", "+79210933323");
@@ -27,7 +27,6 @@ namespace OOPFinalTask
                 new Product("Коробка", 000001, 540, 1),
                 new Product("Штаны", 000002, 2240, 3),
             };
-            ProductCollection productCollection2 = new ProductCollection(products2);
 
             //Входные данные отправки в магазин
             Sender sender3 = new Sender("Степан Николаевич", "+79220933466");
@@ -36,46 +35,50 @@ namespace OOPFinalTask
             Product[] products3 = new Product[]
             {
                 new Product("Букет цветов - Розы французкие", 000001, 3150, 1),
-                new Product("Букет цветов - Ромашки", 000002, 2250, 3000),
+                new Product("Букет цветов - Ромашки", 000002, 2250, 1),
             };
-            ProductCollection productCollection3 = new ProductCollection(products3);
+            #endregion
 
-            HomeDelivery homeDelivery = new HomeDelivery(addres1, sender1, recipient1, productCollection1, 200, "Иван", "+79230002323");
-            homeDelivery.Send();
-            Console.WriteLine($"{products1.TotalProductQuantity()}");
-            
-            PickPointDelivery pickPointDelivery = new PickPointDelivery(addres2, sender2, recipient2, productCollection2, 430);
-            pickPointDelivery.Send();
-            
-            ShopDelivery shopDelivery = new ShopDelivery(addressShop, sender3, recipient3, productCollection3, 780);
-            shopDelivery.Send();
+            HomeDelivery homeDelivery = new HomeDelivery(addres1, sender1, recipient1, products1, 200, "Иван", "+79230002323");        
+            PickPointDelivery pickPointDelivery = new PickPointDelivery(addres2, sender2, recipient2, products2, 430);            
+            ShopDelivery shopDelivery = new ShopDelivery(addressShop, sender3, recipient3, products3, 780);
 
+            Order<DeliveryBase> order1 = new Order<DeliveryBase>(homeDelivery, 001);
+            order1.GetOrderNumber();
+            order1.ShowInfo();
 
-            //homeDelivery.ShowProductById(000001);
-            //int count = products1[0] + products1[1];
+            Order<DeliveryBase> order2 = new Order<DeliveryBase>(pickPointDelivery, 002);
+            order2.GetOrderNumber();
+            order2.ShowInfo();
 
-
+            Order<DeliveryBase> order3 = new Order<DeliveryBase>(shopDelivery, 003);
+            order3.GetOrderNumber();
+            order3.ShowInfo();
 
             Console.ReadKey();
         }
     }
 
-    public class Order<TDelivery> where TDelivery : DeliveryBase<AddressBase>
+    public class Order<TDelivery> where TDelivery : DeliveryBase
     {
         private TDelivery delivery;
-        private int number;
+        public int Number;
         public string Description;
 
         public Order(TDelivery delivery, int number)
         {
             this.delivery = delivery;
-            this.number = number;
+            Number = number;
         }
 
-        public void ShowInfo(TDelivery delivery)
+        public void ShowInfo()
         {
             delivery.Send();
-            delivery.ShowProductById(000001);
+            delivery.ShowProducts();
+            delivery.TotalQuantity();
+            
+            //delivery.ShowProductById(000001);
+            Console.WriteLine();
         }
     }
 }
