@@ -11,21 +11,23 @@ namespace Files
         static void Main(string[] args)
         {
             #region System.IO
-            ////класс DriveInfo
-            //// получим системные диски
-            //DriveInfo[] drives = DriveInfo.GetDrives();
-            //// Пробежимся по дискам и выведем их свойства
-            //foreach (DriveInfo drive in drives)
-            //{
-            //    WriteDriveInfo(drive);
+            //класс DriveInfo
+            // получим системные диски
+            DriveInfo[] drives = DriveInfo.GetDrives();
+            // Пробежимся по дискам и выведем их свойства
+            foreach (DriveInfo drive in drives)
+            {
+                WriteDriveInfo(drive);
 
-            //    DirectoryInfo root = drive.RootDirectory;
-            //    DirectoryInfo[] folders = root.GetDirectories();
-            //    WriteFolderInfo(folders);
+                DirectoryInfo root = drive.RootDirectory;
+                DirectoryInfo[] folders = root.GetDirectories();
 
-            //    Console.WriteLine();
-            //    Console.WriteLine();
-            //}
+                WriteFileInfo(root);
+                WriteFolderInfo(folders);
+
+                Console.WriteLine();
+                Console.WriteLine();
+            }
 
             ////классы Directory и DirectoryInfo.
             //string dirName = @"C:\";
@@ -37,6 +39,26 @@ namespace Files
             //DeleteFolder(dirName);
             //GetFoldersFilesNumber(dirName);
             //MoveToGarbage(@"C:/Users/aveA/Desktop", "testFolder");
+
+            ////классы File и FileInfo - для общих операций с файлами (не для работы с текстом в файлах, для такого StreamWriter)
+            //string filePath = @"C:/Users/babylon/source/repos/FirstApp/Files/Program.cs";
+            //if (File.Exists(filePath))
+            //{
+            //    FileInfo fileInfo = new FileInfo(filePath);
+            //    using (StreamWriter sw = fileInfo.AppendText())
+            //    {
+            //        sw.WriteLine($"// Время запуска: {DateTime.Now}");
+            //    }
+            //    using (StreamReader sr = File.OpenText(filePath))
+            //    {
+            //        //string str = "";
+            //        while (sr.ReadLine() != null)
+            //        {
+            //            Console.WriteLine(sr.ReadLine());
+            //        }
+            //    }
+            //}
+
             #endregion
 
             Console.ReadKey();
@@ -62,8 +84,26 @@ namespace Files
             Console.WriteLine($"Папки: ");
 
             foreach (DirectoryInfo folder in folders) 
-            { 
-                Console.WriteLine(folder.Name);
+            {
+                try
+                {
+                    long size = DirectoryExtension.DirSize(folder);
+                    Console.WriteLine($"{folder.Name} - {size} байт");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+        }
+
+        static void WriteFileInfo(DirectoryInfo folder)
+        {
+            FileInfo[] files = folder.GetFiles();
+
+            foreach (FileInfo file in files)
+            {
+                Console.WriteLine($"{file.Name} - {file.Length} байт");
             }
         }
 
@@ -169,3 +209,4 @@ namespace Files
         #endregion
     }
 }
+// Время запуска: 07.12.2024 18:36:14
