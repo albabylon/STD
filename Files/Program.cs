@@ -13,7 +13,7 @@ namespace Files
         {
             //System.IO
 
-            //1.класс DriveInfo
+            //------------1.класс DriveInfo------------
             // получим системные диски
             DriveInfo[] drives = DriveInfo.GetDrives();
 
@@ -30,7 +30,7 @@ namespace Files
                 }
             }
 
-            //2.классы Directory и DirectoryInfo.
+            //------------2.классы Directory и DirectoryInfo.------------
             string dirName = @"C:\";
             string folder1 = @"C:\TestFirstApp\NewFolder";
             string folder2 = @"C:\TestFirstAppNew";
@@ -41,7 +41,7 @@ namespace Files
             GetFoldersFilesNumber(dirName);
             MoveToGarbage(@"C:/Users/aveA/Desktop", "testFolder");
 
-            //3.классы File и FileInfo - для общих операций с файлами (не для работы с текстом в файлах, для такого StreamWriter)
+            //------------3.классы File и FileInfo - для общих операций с файлами (не для работы с текстом в файлах, для такого StreamWriter)------------
             string filePath = @"C:/Users/babylon/source/repos/FirstApp/Files/Program.cs";
             if (File.Exists(filePath))
             {
@@ -60,7 +60,7 @@ namespace Files
                 }
             }
 
-            //4.классы BinaryWriter и BinaryReader - для записи в файловый поток или чтения
+            //------------4.классы BinaryWriter и BinaryReader - для записи в файловый поток или чтения------------
             // сохраняем путь к файлу (допустим, вы его скачали на рабочий стол)
             string filePath4 = @"C:\Users\aveA\Downloads\BinaryFile.bin";
 
