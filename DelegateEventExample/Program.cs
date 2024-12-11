@@ -10,8 +10,8 @@ namespace DelegateEventExample
     {
         static void Main(string[] args)
         {
-            NumberReader reader = new NumberReader();
-            reader.NumberEnteredEvent += ShowNumber;
+            NumberReader reader = new NumberReader(); //вызывем издателя
+            reader.NumberEnteredEvent += ShowNumber; //подписываемся на событие, то есть указываем что должно произойти когда дойдет до этого события
 
             while (true)
             {
@@ -47,6 +47,7 @@ namespace DelegateEventExample
 
         public void Read() 
         {
+            //тут что-то происходит
             Console.WriteLine();
             Console.WriteLine("Введите число 1 или 2:");
 
@@ -56,11 +57,13 @@ namespace DelegateEventExample
                     throw new FormatException("Ошибка ввода данных");
             }
 
+            //тут указываем что должно произойти какое-то событие
             NumberEntered(number);
         }
 
         protected virtual void NumberEntered(int value)
-        {
+        {   
+            //реализация события через делегат
             NumberEnteredEvent?.Invoke(value);
         }
     }
