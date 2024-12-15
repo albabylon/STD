@@ -1,5 +1,7 @@
-﻿using System;
-using static ExceptionsDelegateEventsFinalTask.ExeptionsTask1;
+﻿using ExceptionsDelegateFinalTask;
+using System;
+using System.Linq;
+using static ExceptionsDelegateEventsFinalTask.TaskExeptions;
 
 namespace ExceptionsDelegateEventsFinalTask
 {
@@ -7,7 +9,8 @@ namespace ExceptionsDelegateEventsFinalTask
     {
         static void Main(string[] args)
         {
-            //Исключения
+
+            #region Задание 1 - Исключения
             Exception[] exceptions = new Exception[5];
             exceptions[0] = new IndexOutOfRangeException();
             exceptions[1] = new FormatException();
@@ -15,7 +18,7 @@ namespace ExceptionsDelegateEventsFinalTask
             exceptions[3] = new DivideByZeroException();
             exceptions[4] = new NotUniqElemenToAddException("Добавлен не уникальный элемент", "Элемент 012");
 
-            for (int i = 0; i < exceptions.Length; i++) 
+            for (int i = 0; i < exceptions.Length; i++)
             {
                 try
                 {
@@ -41,18 +44,53 @@ namespace ExceptionsDelegateEventsFinalTask
                 {
                     Console.WriteLine($"Ошибка: {ex.Message}, Элемент: {ex.ElementName}\n{ex.GetBaseException()}");
                 }
-                finally 
+                finally
                 {
                     Console.WriteLine("------------------");
                 }
             }
+            #endregion
+            
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
 
-            //Делегаты и события
+            #region Задание 2 - Делегаты и события
+            SurnamesReader reader = new SurnamesReader();
+            reader.SortSurnamesEvent += SortSurnames;
 
+            try
+            {
+                reader.GetSortedSurnames();
+            }
+            catch (FormatException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                Console.WriteLine("Сортировка проведена");
+            }
+            #endregion
 
+            Console.ReadKey();
+        }
 
+        private static void SortSurnames(string[] surnames, int value)
+        {
+            string[] result = new string[surnames.Length];
+            switch (value)
+            {
+                case 1:
+                    result = surnames.OrderBy(x => x).ToArray();
+                    break;
+                case 2:
+                    result = surnames.OrderByDescending(x => x).ToArray();
+                    break;
+            }
 
-           Console.ReadKey();
+            foreach (string s in result)
+                Console.WriteLine(s);
         }
     }
 }

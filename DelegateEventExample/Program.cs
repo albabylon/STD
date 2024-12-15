@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DelegateEventExample
 {
@@ -45,13 +41,13 @@ namespace DelegateEventExample
         public delegate void NumberEnteredDelegate(int value);
         public event NumberEnteredDelegate NumberEnteredEvent;
 
-        public void Read() 
+        public void Read()
         {
             //тут что-то происходит
             Console.WriteLine();
             Console.WriteLine("Введите число 1 или 2:");
 
-            if (!int.TryParse(Console.ReadLine(), out int number)) 
+            if (!int.TryParse(Console.ReadLine(), out int number))
             {
                 if (number != 1 && number != 2)
                     throw new FormatException("Ошибка ввода данных");
@@ -62,7 +58,7 @@ namespace DelegateEventExample
         }
 
         protected virtual void NumberEntered(int value)
-        {   
+        {
             //реализация события через делегат
             NumberEnteredEvent?.Invoke(value);
         }

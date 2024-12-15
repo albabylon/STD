@@ -2,7 +2,7 @@
 
 namespace ExceptionsDelegateEventsFinalTask
 {
-    public class ExeptionsTask1
+    public class TaskExeptions
     {
         public class NotUniqElemenToAddException : Exception
         {
