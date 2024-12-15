@@ -23,23 +23,23 @@ namespace ExceptionsDelegateEventsFinalTask
                 }
                 catch (IndexOutOfRangeException ex)
                 {
-                    Console.WriteLine($"Ошибка: {ex.Message}");
+                    Console.WriteLine($"Ошибка: {ex.Message}\n{ex.GetBaseException()}");
                 }
                 catch (FormatException ex)
                 {
-                    Console.WriteLine($"Ошибка: {ex.Message}");
+                    Console.WriteLine($"Ошибка: {ex.Message}\n{ex.GetBaseException()}");
                 }
                 catch (ArgumentNullException ex)
                 {
-                    Console.WriteLine($"Ошибка: {ex.Message}");
+                    Console.WriteLine($"Ошибка: {ex.Message}\n{ex.GetBaseException()}");
                 }
                 catch (DivideByZeroException ex)
                 {
-                    Console.WriteLine($"Ошибка: {ex.Message}");
+                    Console.WriteLine($"Ошибка: {ex.Message}\n{ex.GetBaseException()}");
                 }
                 catch (NotUniqElemenToAddException ex)
                 {
-                    Console.WriteLine($"Ошибка: {ex.Message}, Элемент: {ex.ElementName}");
+                    Console.WriteLine($"Ошибка: {ex.Message}, Элемент: {ex.ElementName}\n{ex.GetBaseException()}");
                 }
                 finally 
                 {
