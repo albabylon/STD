@@ -6,7 +6,7 @@ namespace ExceptionsDelegateEventsFinalTask
     {
         public class NotUniqElemenToAddException : Exception
         {
-            public string ElementName { get; set; }
+            public string ElementName { get; }
 
             public NotUniqElemenToAddException()
             {
