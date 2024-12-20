@@ -25,7 +25,39 @@ namespace Interfaces
             //Интерфейсы в данном случае отлично подойдут для завязывания контрактов между классами, тем самым диктуя производным классам выполнять бизнес - логику ваших контрактов.
             //При этом у вас ещё остаётся место для наследования от другого класса. 
 
+            //явная и неявная реализация интерфейса
+            NewMessenger newMessenger = new NewMessenger();
+            newMessenger.SendMessage("Hello World!");
+            ((IWhatsApp)newMessenger).SendMessage("Hello World!");
+            ((IViber)newMessenger).SendMessage("Hello World!");
+
             Console.Read();
+        }
+        public class NewMessenger : IWhatsApp, IViber
+        {
+            public void SendMessage(string message)
+            {
+                Console.WriteLine("{0} : {1}", "Nothing", message);
+            }
+
+            //явная реализация интерфейса
+            void IWhatsApp.SendMessage(string message)
+            {
+                Console.WriteLine("{0} : {1}", "WhatsApp", message);
+            }
+
+            void IViber.SendMessage(string message)
+            {
+                Console.WriteLine("{0} : {1}", "Viber", message);
+            }
+        }
+        public interface IWhatsApp
+        {
+            void SendMessage(string message);
+        }
+        public interface IViber
+        {
+            void SendMessage(string message);
         }
     }
 }
