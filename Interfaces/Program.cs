@@ -31,8 +31,32 @@ namespace Interfaces
             ((IWhatsApp)newMessenger).SendMessage("Hello World!");
             ((IViber)newMessenger).SendMessage("Hello World!");
 
+
+            Console.WriteLine("\n\n\n");
+
+            //множественна реализация
+            IReader reader = new FileManager();
+            IWriter writer = new FileManager();
+            IMailer mailer = new FileManager();
+            FileManager fileManager = new FileManager();
+            reader.Read();
+            writer.Write();
+            mailer.Read();
+            mailer.SendEmail();
+            fileManager.Do();
+
+            //ковариантность и контравариантость - только в обобщенных интерфейсах и со словом out для ковариации и in для контравариации
+            //Ковариантность позволяет использовать более конкретный тип, чем тип, который задан изначально.
+            //Контравариантность позволяет использовать более универсальный тип, чем тип, который задан изначально.
+            //пример одновременной ковариации и контравариации
+            IGarageManager<Car, Garage> garageManager = new GarageManagerBase();
+            IGarageManager<Bike, Garage> garageManager1 = new GarageManagerBase(); //контравариантность
+            IGarageManager<Car, House> garageManager2 = new GarageManagerBase(); //ковариантность
+
             Console.Read();
         }
+
+        //для явная и неявная реализация
         public class NewMessenger : IWhatsApp, IViber
         {
             public void SendMessage(string message)
@@ -58,6 +82,83 @@ namespace Interfaces
         public interface IViber
         {
             void SendMessage(string message);
+        }
+
+        //для множественной реализации
+        public class FileManager : IWriter, IReader, IMailer
+        {
+            void IReader.Read()
+            {
+                Console.WriteLine("Выполнен метод Read из IReader...");
+            }
+
+            void IMailer.Read()
+            {
+                Console.WriteLine("Выполнен метод Read из IMailer...");
+            }
+
+            void IMailer.SendEmail()
+            {
+                Console.WriteLine("Выполнен метод SendEmail из IMailer...");
+            }
+
+            void IWriter.Write()
+            {
+                Console.WriteLine("Выполнен метод Write из IWriter...");
+            }
+
+            public void Do()
+            {
+                Console.WriteLine("Выполнен метод Do из класса FileManager...");
+            }
+        }
+        public interface IWriter
+        {
+            void Write();
+        }
+        public interface IReader
+        {
+            void Read();
+        }
+        public interface IMailer
+        {
+            void SendEmail();
+            void Read();
+        }
+
+        //для ковариантность и контравариантость
+        public class Car 
+        {
+            
+        }
+        public class Bike : Car
+        {
+
+        }
+        public class House
+        {
+
+        }
+        public class Garage : House
+        { 
+
+        }
+        public interface IGarageManager<in T, out Z>
+        {
+            Z GetGarageInfo();
+            void Add(T car);
+        }
+        public class GarageManagerBase : IGarageManager<Car, Garage>
+        {
+            public void Add(Car car)
+            {
+                throw new NotImplementedException();
+            }
+
+            public Garage GetGarageInfo()
+            {
+                throw new NotImplementedException();
+            }
         }
     }
 }
