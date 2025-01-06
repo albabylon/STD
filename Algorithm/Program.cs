@@ -14,6 +14,9 @@ namespace Algorithm
 
         static void Main(string[] args)
         {
+            // Ссылка на алгоритм
+            // https://www.dropbox.com/scl/fi/i4jk3dcicrsf7c8xinb1x/.drawio.png?rlkey=d244xwkex8cor1fwo7oqqk7i1&dl=0
+
             User[] users = new User[] 
             { 
                 new User() { Name = "Sasha", IsPremium = false, Login = "s1" }, 
