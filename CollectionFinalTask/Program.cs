@@ -12,6 +12,8 @@ namespace CollectionFinalTask
 
         static void Main(string[] args)
         {
+            Console.BackgroundColor = ConsoleColor.Green;
+            Console.ForegroundColor = ConsoleColor.Black;
             if (!CheckFileExist())
             {
                 DowmloadFile();
@@ -19,14 +21,18 @@ namespace CollectionFinalTask
             else
                 Console.WriteLine("Файл уже был скачан");
             string text = ReadFile() ?? throw new Exception("Пустая переменная с текстом");
+            Console.ResetColor();
 
+            Splitter();
             // Задание 13.6.1 - Сравнение времени добавления в середину списка для List и LinkedList
             ListLinkedListComparer listLinkedListComparer = new ListLinkedListComparer(text);
             listLinkedListComparer.CompareCharInsertingTime('$', "ЧЕМ ДЛИНЕЕ ТЕКСТ ТЕМ ЭФФЕКТИВНЕЕ РАБОТА LINKEDLIST");
 
-
-            // Задание 13.6.2
-
+            Splitter();
+            // Задание 13.6.2 - Какие 10 слов чаще всего встречаются в тексте
+            RepeatedWordsDetector repeatedWordsDetector = new RepeatedWordsDetector(text);
+            repeatedWordsDetector.GetUniqWords();
+            repeatedWordsDetector.Show();
             Console.ReadLine();
         }
 
@@ -68,6 +74,11 @@ namespace CollectionFinalTask
             Console.WriteLine("Cчитывание файла выполнено!");
 
             return sb.ToString();
+        }
+        private static void Splitter()
+        {
+            Console.WriteLine();
+            Console.WriteLine("-----------------------------------------------------------------------");
         }
     }
 }
