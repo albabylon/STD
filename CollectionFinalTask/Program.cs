@@ -39,7 +39,7 @@ namespace CollectionFinalTask
         private static void DowmloadFile()
         {
             Console.WriteLine("Начато скачивание файла...");
-
+            // Path.Combine код будет работать на любой ОС
             try
             {
                 using (WebClient client = new WebClient())
@@ -62,7 +62,7 @@ namespace CollectionFinalTask
             StringBuilder sb = new StringBuilder();
 
             Console.WriteLine("Начато считывание файла...");
-
+            // можно было использовать ReadAllLine
             using (StreamReader sr = File.OpenText(fileName))
             {
                 while (sr.ReadLine() != null)

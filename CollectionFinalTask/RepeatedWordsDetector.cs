@@ -31,6 +31,7 @@ namespace CollectionFinalTask
 
             int counter = 0;
 
+            // Можно сделать через Linq .Take(10)
             while (counter < 10)
             {
                 string word = uinqWordsDic.Keys.ElementAt(counter);
