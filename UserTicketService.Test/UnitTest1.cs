@@ -9,6 +9,10 @@ namespace UserTicketService.Test
             public void Test1()
             {
                 Assert.True(50 == 100);
+                // Assert.False - Проверяем, что указанное условие ложно
+                // Assert.Null - Проверяем, что указанный объект имеет значение null
+                // Assert.Zero - Проверяем, что указанное число равно нулю
+                // Assert.IsEmpty - Проверяем, что указанная строка пустая
             }
         }
     }
