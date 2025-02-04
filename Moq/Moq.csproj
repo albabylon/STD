@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6EE8AB40-60A4-43B1-8F76-BAFB96DEADB7}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <RootNamespace>UserTicketService</RootNamespace>
-    <AssemblyName>UserTicketService</AssemblyName>
+    <ProjectGuid>{EB457CEA-A227-4D63-A8B0-24F6D5AB21CC}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Moq</RootNamespace>
+    <AssemblyName>Moq</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -32,9 +32,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -46,13 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Calculator.cs" />
-    <Compile Include="MoqTest\ITicketService.cs" />
-    <Compile Include="MoqTest\TicketPrice.cs" />
-    <Compile Include="MoqTest\TicketService.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="MoqTest\Ticket.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

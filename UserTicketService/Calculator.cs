@@ -16,5 +16,10 @@
         {
             return a / b;
         }
+
+        public int Add(int one, int two)
+        {
+            return one + two;
+        }
     }
 }
