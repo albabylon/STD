@@ -13,7 +13,7 @@ namespace UserTicketService.MoqTest
                throw new TicketNotFoundException() : ticket.Price;
         }
 
-        private IEnumerable<Ticket> FakeBaseData
+        private List<Ticket> FakeBaseData
         {
             get
             {
@@ -38,6 +38,22 @@ namespace UserTicketService.MoqTest
             var ticket = FakeBaseData.FirstOrDefault(t => t.Id == ticketId);
             return (ticket is null) ?
               throw new TicketNotFoundException() : ticket;
+        }
+
+        //Для демонстрации интеграционного теста
+        public void SaveTicket(Ticket ticket)
+        {
+            FakeBaseData.Add(ticket);
+        }
+
+        public void DeleteTicket(Ticket ticket)
+        {
+            FakeBaseData.Remove(ticket);
+        }
+
+        public IEnumerable<Ticket> GetAllTickets()
+        {
+            return FakeBaseData;
         }
     }
 
