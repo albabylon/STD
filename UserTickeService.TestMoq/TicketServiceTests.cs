@@ -17,5 +17,12 @@ namespace UserTickeService.TestMoq
             var ticketServiceTest = new TicketService();
             Assert.Throws<TicketNotFoundException>(() => ticketServiceTest.GetTicketPrice(100));
         }
+
+        [Test] //TDD
+        public void GetTicketMustReturnNotNullableTicket()
+        {
+            var ticketServiceTest = new TicketService();
+            Assert.IsNotNull(ticketServiceTest.GetTicket(1)); //1 шаг TDD - метода GetTicket() нету - тест не проходит
+        }
     }
 }

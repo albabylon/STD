@@ -25,6 +25,20 @@ namespace UserTicketService.MoqTest
                 };
             }
         }
+
+        //2 шаг TDD - пишем быстро метод GetTicket() и запускаем тест
+        //public Ticket GetTicket(int ticketId)
+        //{
+        //    return new Ticket(1, "", 1);
+        //}
+
+        //3 шаг TDD - пишем норм метод GetTicket() и запускаем тест
+        public Ticket GetTicket(int ticketId)
+        {
+            var ticket = FakeBaseData.FirstOrDefault(t => t.Id == ticketId);
+            return (ticket is null) ?
+              throw new TicketNotFoundException() : ticket;
+        }
     }
 
     public class TicketNotFoundException : Exception
